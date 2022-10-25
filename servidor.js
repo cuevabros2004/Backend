@@ -8,6 +8,10 @@ function getAleatorio() {
     return parseInt(Math.random() * 3) + 1
 }
 
+servidor.get('/', async (peticion, respuesta) => {
+    respuesta.send('<h1>Bienvenido al Desafío SERVIDOR CON EXPRESS</h1>')
+})
+
 servidor.get('/productos',async (peticion, respuesta) =>{
     respuesta.send( await contenedor.getAll())
 })

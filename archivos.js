@@ -4,7 +4,7 @@ const fs = require("fs");
 
 class Contenedor{
      
-    #productos;
+   #productos;
     constructor(nombreArchivo) {
         this.#productos = []
         this.nombreArchivo = nombreArchivo
