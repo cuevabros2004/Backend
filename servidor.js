@@ -1,45 +1,37 @@
 const express = require('express')
-const { Contenedor }   = require('./archivos.js') 
+const { routerApi } = require("./routers/routerApi.js")
+const { routerWeb } = require("./routers/routerWeb.js")
+
 
 const servidor = express()
-const contenedor = new Contenedor('productos.txt')
 
-function getAleatorio() {
-    return parseInt(Math.random() * 3) + 1
-}
+  servidor.use(express.json())
+  servidor.use(express.urlencoded({ extended: true }))
 
-servidor.get('/', async (peticion, respuesta) => {
-    respuesta.send('<h1>Bienvenido al Desafío SERVIDOR CON EXPRESS</h1>')
-})
-
-servidor.get('/productos',async (peticion, respuesta) =>{
-    respuesta.send( await contenedor.getAll())
-})
-
-//servidor.get('/despedida', (peticion, respuesta) =>{
- //   respuesta.json({"codigo": "1", "nombreProducto": "SALÓN DE FIESTAS"})
-//})
-
-servidor.get('/productosRandom',async (peticion, respuesta) =>{
-    respuesta.send( await contenedor.getById(getAleatorio()))
-})
+  servidor.use('/api/productos', routerApi)
+  servidor.use('/', routerWeb)
+  servidor.use('/views', express.static('views'))
 
 
+  function getAleatorio() {
+    return Math.floor(Math.random()*3) + 1
+  }
 
-function conectar (puerto = 0   ){
-    return new Promise((resolve, reject) =>{
-        const servidorConectador = servidor.listen(puerto, err =>{
-            if (err) 
-                reject(err)
-                //console.log("fallo" + err)
-            else
-                resolve(servidorConectador)
-                //console.log(`conectado al puerto ${servidorConectado.address().port}`)
+  function controladorproductosRandom(req, res){
+    res.send(prodTest.getById(getAleatorio()))
+  }
+   servidor.get('/api/productosRandom', async (peticion, respuesta) => {
+    respuesta.send(await prodTest.getById(getAleatorio()))
+  })
+
+
+  function conectar(puerto = 0) {
+    return new Promise((resolve, reject) => {
+        const servidorConectador = servidor.listen(puerto, () => {
+            resolve(servidorConectador)
         })
-} )
-}
+        servidorConectador.on("error", error => reject(error))
+    })
+  }
 
-module.exports = { conectar }
-
-
- 
+  module.exports = { conectar }
