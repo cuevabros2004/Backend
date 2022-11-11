@@ -1,0 +1,26 @@
+
+<h1 style="color:rgb(242, 243, 236); text-decoration: underline;">Datos del producto/servicio</h1>
+<br>
+
+<form action="/productos" method="post" >
+
+    <div class="form-group">
+        <label for="title" style="color:rgb(242, 243, 236);"><b>Nombre del Producto/Servicio: </b></label>
+        <input id="title" class="form-control" type="text" name="title">
+    </div>
+
+    <div class="form-group">
+        <label for="price" style="color:rgb(242, 243, 236);"><b>Precio: </b></label>
+        <input id="price" class="form-control" type="text" name="price">
+    </div>
+
+    <div class="form-group">
+        <label for="thumbnail" style="color:rgb(242, 243, 236);"><b>Imágen: </b></label>
+        <input id="thumbnail" class="form-control" type="text" name="thumbnail">
+    </div>
+
+  
+    <button class="btn btn-success mt-3 mb-5" style="background-color: rgb(35, 35, 139);" onclick="location.href='http://localhost:8080/'">Enviar</button>
+
+</form>
+    <button class="btn btn-success mt-3 mb-5" style="background-color: rgb(35, 35, 139);" onclick="location.href='http://localhost:8080/productos'">Ver Productos</button>

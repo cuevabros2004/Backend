@@ -11,34 +11,29 @@ class Contenedor{
    }
 
 
-    async save(objeto){
+   async save(objeto){
  
-       let id
 
-        try {
-            this.#productos = await this.getAll()
-        } 
-        catch (error){
-            throw("El archivo no existe o está vacío")
-        } 
-
-      /*  if(this.#productos.length > 0)
-           id = this.#productos[this.#productos.length - 1].id + 1
-        else
-            id = 1*/
+    try {
+       if(await this.getAll())
+        this.#productos = await this.getAll()
+    } 
+    catch (error){
+        error => { throw error}
+    } 
 
 
-        try {
-            //objeto.id = id
-            this.#productos.push(objeto)
-            await fs.promises.writeFile(this.#filename, JSON.stringify(this.#productos, null, 2))
-            return 'Id del objeto guardado: ' + this.#productos[this.#productos.length - 1].id
-        }
-        catch(error){
-            throw("Hubo un error: " + error)
-        } 
+    try {
+        this.#productos.push(objeto)
+        await fs.promises.writeFile(this.#filename, JSON.stringify(this.#productos, null, 2))
+        return 'Id del objeto guardado: ' + this.#productos[this.#productos.length - 1].id
+    }
+    catch(error){
+        console.log("entró acaaaaa")
+        error => { throw error}
+    } 
 
-      }
+  }
 
 
     async getById(id){
@@ -57,8 +52,8 @@ class Contenedor{
         }
 
         catch(error){
-            throw("Hubo un error: " + error)
-        } 
+            error => { throw error}
+        }
 
      }
 
@@ -76,9 +71,9 @@ class Contenedor{
                 }
             }
 
-        catch(error){
-            throw("Hubo un error: " + error)
-        } 
+            catch(error){
+                error => { throw error}
+            }
 
     }
 
@@ -89,8 +84,8 @@ class Contenedor{
             await fs.promises.writeFile(this.#filename, JSON.stringify(this.#productos.filter(p => p.id !== id), null, 2))
         }
         catch(error){
-            throw("Hubo un error: " + error)
-        } 
+            error => { throw error}
+        }
     }
 
     async deleteAll(){
@@ -101,9 +96,8 @@ class Contenedor{
                 await fs.promises.writeFile(this.#filename, JSON.stringify(this.#productos), null, 2)
             }
             catch(error){
-                throw("Hubo un error: " + error)
-            } 
-
+                error => { throw error}
+            }
     }
 
   }

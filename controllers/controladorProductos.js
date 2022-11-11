@@ -2,23 +2,24 @@ const { randomUUID } = require('crypto');
 const { Contenedor } = require("../container/container.js")
 const fs = require("fs");
 
-const prodTest = new Contenedor('productos.txt')
+const prods = new Contenedor('productos.txt')
 
 function controladorPostProductos(req, res) {
     res.status(201);
     const objeto = req.body;
+    console.log(req.body)
     objeto.id = randomUUID();
-    prodTest.save(objeto);
+    prods.save(objeto);
     res.json(objeto)
 }
 
 async function controladorGetProductos(req, res) {
-    const productos = await prodTest.getAll();
+    const productos = await prods.getAll();
     res.json(productos);
     }
 
 async function controladorGetProductosSegunId({ params: { id } }, res) {
-    const productos = await prodTest.getAll();
+    const productos = await prods.getAll();
     const buscado = productos.find(c => c.id === id);
     if (!buscado) {
         res.status(404);
@@ -29,7 +30,7 @@ async function controladorGetProductosSegunId({ params: { id } }, res) {
 }
 
 async function controladorPutProductosSegunId({ body, params: { id } }, res) {
-    const productos = await prodTest.getAll();
+    const productos = await prods.getAll();
     const indiceBuscado = productos.findIndex(c => c.id === id);
     if (indiceBuscado === -1) {
         res.status(404);
@@ -42,8 +43,8 @@ async function controladorPutProductosSegunId({ body, params: { id } }, res) {
             await fs.promises.writeFile('productos.txt', JSON.stringify(productos, null, 2))
         }
         catch(error){
-            throw("Hubo un error: " + error)
-        } 
+            error => { throw error}
+        }
 
         res.json(body);
     }
@@ -51,7 +52,7 @@ async function controladorPutProductosSegunId({ body, params: { id } }, res) {
 
 
 async function controladorDeleteProductosSegunId({ params: { id } }, res) {
-    const productos = await prodTest.getAll();
+    const productos = await prods.getAll();
     const indiceBuscado = productos.findIndex(c => c.id === id);
     if (indiceBuscado === -1) {
         res.status(404);
@@ -65,8 +66,8 @@ async function controladorDeleteProductosSegunId({ params: { id } }, res) {
             await fs.promises.writeFile('productos.txt', JSON.stringify(productos, null, 2))
         }
         catch(error){
-            throw("Hubo un error: " + error)
-        } 
+            error => { throw error}
+        }
 
         res.json(borrados[0]);
     }

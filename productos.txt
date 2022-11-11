@@ -1,26 +1,8 @@
 [
   {
-    "id": 1,
-    "nombreProducto": "SALÓN DE FIESTAS",
-    "precioPorPersona": "400",
-    "imagen": "https://quintalamary.com/?page_id=51#bwg1/10"
-  },
-  {
-    "id": 2,
-    "nombreProducto": "PILETA",
-    "precioPorPersona": "400",
-    "imagen": "https://quintalamary.com/?page_id=51#bwg1/2"
-  },
-  {
-    "id": 3,
-    "nombreProducto": "PARRILLA",
-    "precioPorPersona": "500",
-    "imagen": "https://quintalamary.com/?page_id=51#bwg1/4"
-  },
-  {
-    "title": "pileta",
-    "price": "300",
-    "thumbnail": "hyh",
-    "id": "49bc9ac7-4825-4786-b7b8-631c84827af4"
+    "title": "Parrilla",
+    "price": "230",
+    "thumbnail": "https://d2r9epyceweg5n.cloudfront.net/stores/001/150/477/products/006330_1-a9698dd8b06314e53916033943151035-640-0.jpg",
+    "id": "2799af01-9f99-411b-bfab-7a5198d45025"
   }
 ]
