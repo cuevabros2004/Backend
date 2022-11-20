@@ -1,6 +1,0 @@
- [  {
-    "title": "pileta",
-    "price": "300",
-    "thumbnail": "https://img.freepik.com/fotos-premium/cerca-jugador-futbol-que-patea-pelota_207634-4089.jpg?w=900",
-    "id": "e24dd795-e5d4-43b3-a73a-be199bd57323"
-  }]

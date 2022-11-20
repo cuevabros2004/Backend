@@ -25,7 +25,6 @@ servidor.use(express.static('public'))
 servidor.engine('handlebars', engine())
 servidor.set('view engine', 'handlebars')
 
-const puerto = process.env.PORT ?? 8080
 
 function conectar(puerto = 0) {
   return new Promise((resolve, reject) => {
@@ -37,15 +36,16 @@ function conectar(puerto = 0) {
 
 io.on('connection', (socket) => {
   // "connection" se ejecuta la primera vez que se abre una nueva conexión
+  //console.log('Usuario conectado')
 
 
-  socket.on('mensajeProductos', data => {
-    data.socketid = socket.id
+  socket.on('mensajes', data => {
+    const mensajes = { socketid: socket.id, mensaje: data }
     io.sockets.emit('mensajesActualizados', `<tr><td>${data.title}</td> <td>${data.price}</td> <td><img width="70px" src=${data.thumbnail} alt="Imagen producto"/></td><tr>`);
   })
 
   socket.on('mensajesChat', data => {
-    data.socketid = socket.id 
+    const mensajesChat = { socketid: socket.id, mensajesChat: data }
     io.sockets.emit('mensajesChatActualizados', `${data.fecha} - <strong>${data.nombre}</strong>`  + ": " + data.mensaje);
   })
 
@@ -53,3 +53,18 @@ io.on('connection', (socket) => {
 
 
 module.exports = { conectar }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

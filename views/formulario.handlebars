@@ -1,26 +1,43 @@
-
 <h1 style="color:rgb(242, 243, 236); text-decoration: underline;">Datos del producto/servicio</h1>
 <br>
 
-<form action="/productos" method="post" >
+<form id="formulario" action="/productos" method="post">
 
-    <div class="form-group">
-        <label for="title" style="color:rgb(242, 243, 236);"><b>Nombre del Producto/Servicio: </b></label>
-        <input id="title" class="form-control" type="text" name="title">
+    <div class="form-group" style="color:rgb(242, 243, 236);">
+        <label for="title"><b>Nombre del Producto/Servicio: </b></label>
+        <input id="title" class="form-control" type="text" name="title" style="width:500px">
     </div>
 
-    <div class="form-group">
-        <label for="price" style="color:rgb(242, 243, 236);"><b>Precio: </b></label>
-        <input id="price" class="form-control" type="text" name="price">
+    <div class="form-group" style="color:rgb(242, 243, 236);">
+        <label for="price"><b>Precio: </b></label>
+        <input id="price" class="form-control" type="text" name="price" style="width:500px">
     </div>
 
-    <div class="form-group">
-        <label for="thumbnail" style="color:rgb(242, 243, 236);"><b>Imágen: </b></label>
-        <input id="thumbnail" class="form-control" type="text" name="thumbnail">
+    <div class="form-group" style="color:rgb(242, 243, 236);">
+        <label for="thumbnail"><b>Imágen: </b></label>
+        <input id="thumbnail" class="form-control" type="text" name="thumbnail" style="width:500px">
     </div>
 
   
-    <button class="btn btn-success mt-3 mb-5" style="background-color: rgb(35, 35, 139);" onclick="location.href='http://localhost:8080/'">Enviar</button>
+    <button id="enviar" class="btn btn-success mt-3 mb-5"  style="background-color: rgb(35, 35, 139);" type="submit">Enviar</button>
+
+    <span id="chat" style="position: absolute; margin-top: -310px; margin-left: 600px;">
+        <h1>MENSAJERIA</h1>
+        <h5>Nombre: <input id="nombre" type="text"> </h5>
+        <h5>Mensaje: <input id="mensaje" type="text"> </h5>
+        <button id="enviarchat" type="button" >Enviar</button>
+        <br><br>
+        <div id="mensajesChat">
+
+        </div>
+    </span>
+    
+    <script src="js/index.js"></script>
 
 </form>
-    <button class="btn btn-success mt-3 mb-5" style="background-color: rgb(35, 35, 139);" onclick="location.href='http://localhost:8080/productos'">Ver Productos</button>
+    <table id="parrafo" class="table table-striped table-bordered table-secondary">
+
+      <button class="btn btn-success mt-3 mb-5" style="background-color: rgb(35, 35, 139);" onclick="location.href='http://localhost:8080/productos/'">Ver Productos</button>
+
+
+
