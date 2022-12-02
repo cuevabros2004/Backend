@@ -1,4 +1,4 @@
-const fs = require("fs");
+import { promises } from "fs";
 
 
 
@@ -16,7 +16,7 @@ class Contenedor{
        let id
 
         try {
-            const contenido = JSON.parse(await fs.promises.readFile(this.nombreArchivo, 'UTF-8'))
+            const contenido = JSON.parse(await promises.readFile(this.nombreArchivo, 'UTF-8'))
 
             if(contenido) { 
               this.#productos = contenido
@@ -35,7 +35,7 @@ class Contenedor{
 
         try {
             this.#productos.push({id, title, price, thumbnail})
-            await fs.promises.writeFile(this.nombreArchivo, JSON.stringify(this.#productos))
+            await promises.writeFile(this.nombreArchivo, JSON.stringify(this.#productos))
             return 'Id del objeto guardado: ' + this.#productos[this.#productos.length - 1].id
         }
         catch(error){
@@ -71,7 +71,7 @@ class Contenedor{
      async getAll(){
        
         try {
-            const contenido = JSON.parse(await  fs.promises.readFile(this.nombreArchivo, 'UTF-8'))
+            const contenido = JSON.parse(await  promises.readFile(this.nombreArchivo, 'UTF-8'))
 
             if(contenido) { 
               this.#productos = contenido
@@ -90,13 +90,13 @@ class Contenedor{
     async deleteById(id){
 
         try {
-            const contenido = JSON.parse(await fs.promises.readFile(this.nombreArchivo, 'UTF-8'))
+            const contenido = JSON.parse(await promises.readFile(this.nombreArchivo, 'UTF-8'))
 
             if(contenido) { 
               this.#productos = contenido
 
               try {
-                await fs.promises.writeFile(this.nombreArchivo, JSON.stringify(this.#productos.filter(p => p.id !== id)))
+                await promises.writeFile(this.nombreArchivo, JSON.stringify(this.#productos.filter(p => p.id !== id)))
             }
             catch(error){
                 console.log("Se produjo el siguiente error: " + error)
@@ -119,7 +119,7 @@ class Contenedor{
          this.#productos = []
 
               try {
-                await fs.promises.writeFile(this.nombreArchivo, JSON.stringify(this.#productos))
+                await promises.writeFile(this.nombreArchivo, JSON.stringify(this.#productos))
             }
             catch(error){
                 console.log("Se produjo el siguiente error: " + error)
@@ -129,7 +129,7 @@ class Contenedor{
 
   }
  
-  module.exports = { Contenedor }
+  export default { Contenedor }
 
 /*
   const prodPrueba = new Contenedor(nombreArchivo)
